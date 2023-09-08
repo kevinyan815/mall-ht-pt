@@ -16,7 +16,7 @@
     })
     const router = useRouter()
     const goBack = () => {
-      router.goBack()
+      router.back()
     }
   </script>
   
