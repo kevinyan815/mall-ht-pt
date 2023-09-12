@@ -21,5 +21,10 @@
   })
 </script>
 <style lang="less">
-  @import './common/style/mixin';
+@import './common/style/mixin';
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 </style>
