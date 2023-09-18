@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import router from '@/router'
 import App from './App.vue'
-import {Button, Form, Field, Toast, Icon, Swipe, SwipeCell, SwipeItem } from 'vant'
+import {Button, Form, Field, Toast, Icon, Swipe, SwipeCell, SwipeItem, PullRefresh, List, Tab, Tabs } from 'vant'
 import 'lib-flexible/flexible'
 
 import '@/common/style/theme.css'
@@ -20,6 +20,10 @@ app
   .use(Swipe)
   .use(SwipeCell)
   .use(SwipeItem)
+  .use(PullRefresh)
+  .use(List)
+  .use(Tabs)
+  .use(Tab)
 
 app.config.globalProperties.$filters = {
   prefix(url) {
