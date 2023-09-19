@@ -64,6 +64,7 @@ import { getLocal } from '@/common/js/utils'
 import { getHome } from '@/service/home'
 import { showLoadingToast, closeToast, showToast } from 'vant'
 import Swiper from '@/components/Swiper.vue'
+import { useRouter } from 'vue-router'
 const state = reactive({
   isLogin: false, // 是否已登录
   swiperList: [], // 轮播图列表
@@ -115,6 +116,10 @@ const state = reactive({
   recommends: [],
   headerScroll: false, // 滚动透明判断
 })
+const router = useRouter()
+const goToDetail = (item) => {
+  router.push({ path: `/product/${item.goodsId}` })
+}
 onMounted(async () => {
   const token = getLocal('token')
   if (token) {

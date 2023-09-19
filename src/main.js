@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import router from '@/router'
 import App from './App.vue'
 import {Button, Form, Field, Toast, Icon, Swipe, SwipeCell, SwipeItem, PullRefresh, List, Tab, Tabs } from 'vant'
+import { createPinia } from 'pinia'
 import 'lib-flexible/flexible'
 
 import '@/common/style/theme.css'
@@ -24,6 +25,9 @@ app
   .use(List)
   .use(Tabs)
   .use(Tab)
+
+
+app.use(createPinia())
 
 app.config.globalProperties.$filters = {
   prefix(url) {
