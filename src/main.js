@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import router from '@/router'
 import App from './App.vue'
-import {Button, Form, Field, Toast, Icon, Swipe, SwipeCell, SwipeItem, PullRefresh, List, Tab, Tabs, Checkbox, CheckboxGroup, SubmitBar, Stepper} from 'vant'
+import {Button, Form, Field, Toast, Icon, Swipe, SwipeCell, SwipeItem, PullRefresh, List, Tab, Tabs, Checkbox, CheckboxGroup, SubmitBar, Stepper, Popup} from 'vant'
 import { createPinia } from 'pinia'
 import 'lib-flexible/flexible'
 
@@ -29,6 +29,7 @@ app
   .use(CheckboxGroup)
   .use(SubmitBar)
   .use(Stepper)
+  .use(Popup)
 
 
 app.use(createPinia())
