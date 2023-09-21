@@ -12,12 +12,12 @@
         <van-icon class="arrow" name="arrow" />
       </div>
       <div class="address-wrap" v-else>
-        <div class="name">
+        <div class="name" @click="goTo">
           <span>我是昵称</span>
           <span>15758394732</span>
         </div>
         <div class="address">
-          无地址, 请去添加收获地址
+          无地址, 请选择收获地址
         </div>
         <van-icon class="arrow" name="arrow" />
       </div>
