@@ -16,7 +16,7 @@
             <van-address-list
                 v-else
                 v-model="state.chosenAddressId"
-                :list="list"
+                :list="state.list"
                 default-tag-text="默认"
                 @add="onAdd"
                 @edit="onEdit"

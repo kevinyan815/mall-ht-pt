@@ -40,8 +40,21 @@
           <span>商品金额</span>
           <span>¥{{ total }}</span>
         </div>
-        <van-button class="pay-btn" color="#1baeae" type="primary" block>生成订单</van-button>
+        <van-button @click="handleCreateOrder" class="pay-btn" color="#1baeae" type="primary" block>生成订单</van-button>
       </div>
+      <van-popup
+        closeable
+        :close-on-click-overlay="false"
+        v-model:show="state.showPay"
+        position="bottom"
+        :style="{ height: '30%' }"
+        @close="close"
+      >
+        <div :style="{ width: '90%', margin: '0 auto', padding: '50px 0' }">
+          <van-button :style="{ marginBottom: '10px' }" color="#1989fa" block @click="handlePayOrder(1)">支付宝支付</van-button>
+          <van-button color="#4fc08d" block @click="handlePayOrder(2)">微信支付</van-button>
+        </div>
+      </van-popup>
     </div>
 </template>
   
@@ -53,12 +66,16 @@
   import { showLoadingToast, closeToast, showSuccessToast } from 'vant'
   import { useRoute, useRouter } from 'vue-router'
   import { getDefaultAddress, getAddressDetail } from '@/service/address'
+  import { createOrder, payOrder } from '@/service/order'
   const router = useRouter()
 
   const route = useRoute()
   const state = reactive({
     cartList: [], // 购物车列表
     address: {}, // 地址
+    showPay: false,
+    orderNo: '',
+    cartItemIds: []
   })
 
   onMounted(() => {
@@ -96,6 +113,29 @@
     })
     return sum
   })
+
+  const handleCreateOrder = async () => {
+    const params = {
+      addressId: state.address.addressId,
+      cartItemIds: state.cartList.map(item => item.cartItemId)
+    }
+    const { data } = await createOrder(params)
+    setLocal('cartItemIds', '')
+    state.orderNo = data
+    state.showPay = true
+  }
+
+  const close = () => {
+    router.push({ path: '/order' })
+  }
+  // 模拟支付
+  const handlePayOrder = async (type) => {
+    await payOrder({ orderNo: state.orderNo, payType: type })
+    showSuccessToast('支付成功')
+    setTimeout(() => {
+      router.push({ path: '/order' })
+    }, 2000)
+  }
 </script>
   
 <style lang="less" scoped>
